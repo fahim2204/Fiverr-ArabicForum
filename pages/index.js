@@ -35,8 +35,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Navbar />
-        <Menubar />
+        {/* <Navbar />
+        <Menubar /> */}
         <div className='sm:max-w-6xl mx-auto mt-8 px-6'>
           <div className="grid grid-cols-14 gap-8 mb-5">
             <div className="col-span-10">

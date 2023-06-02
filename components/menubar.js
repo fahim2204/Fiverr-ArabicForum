@@ -39,7 +39,16 @@ const Menubar = () => {
       <nav className="border-b w-full bg-alpha">
         <ul className="sm:max-w-6xl md:mx-auto text-white flex flex-row-reverse justify-around items-center">
           {menuList.map((item, index) => {
-            return <li className="hover:bg-orange-300 py-3 px-5 transition-all duration-300 cursor-pointer border-b-transparent hover:border-b-orange-700 border-b-2 ">{item.name}</li>;
+            return (
+              <li
+                key={index}
+                className="hover:bg-orange-300 py-3 px-5 transition-all duration-300 cursor-pointer border-b-transparent hover:border-b-orange-700 border-b-2"
+              >
+                <Link href={item.link}>
+                  <span>{item.name}</span>
+                </Link>
+              </li>
+            );
           })}
         </ul>
       </nav>
