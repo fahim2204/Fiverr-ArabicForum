@@ -23,13 +23,23 @@ const Menubar = () => {
       icon: "envelope",
     },
     {
+      name: "Instructor",
+      link: "/instructor",
+      icon: "envelope",
+    },
+    {
+      name: "New answer",
+      link: "/fqa",
+      icon: "envelope",
+    },
+    {
       name: "Logout",
       link: "/logout",
       icon: "sign-out-alt",
     },
     {
       name: "Login",
-      link: "/login",
+      link: "/profile",
       icon: "sign-in-alt",
     },
   ];
