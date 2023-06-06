@@ -8,8 +8,11 @@ const instructorprofile = () => {
 
             <div className="max-w-7xl md:mx-auto  py-6 text-center">
                 <div className="grid md:grid-cols-12 gap-3">
+                    <div className="col-span-12 md:col-span-3 bg-gray-100 text-center">
+                        Social
+                    </div>
                     <div className="col-span-12 md:col-span-9 bg-gray-50">
-                        <div className="lg:flex my-4 bg-white shadow-sm rounded-3xl p-4 mx-10 md:mx-20">
+                        <div className="lg:flex my-4 ">
                             <div className="lg:w-1/2 p-2">
                                 <Image src={logo} alt="" className='lg:w-4/5 w-full rounded-3xl' />
                             </div>
@@ -53,9 +56,6 @@ const instructorprofile = () => {
                             </div>
 
                         </div>
-                    </div>
-                    <div className="col-span-12 md:col-span-3 bg-gray-100 text-center">
-                        Social
                     </div>
                 </div>
             </div>
