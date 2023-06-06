@@ -78,7 +78,7 @@ const Fqa = () => {
               </h2>
             </div>
           </div>
-          <div className="col-span-12 md:col-span-8 bg-pink-50 border-t-4 border-green-700 rounded p-4">
+          <div className="col-span-12 md:col-span-8 bg-green-100  border-t-4 border-green-700 rounded p-4">
             <div className=" font-bold text-xl text-green-700 p-2">
               <span className="justify-center text-center items-center m-auto flex">
                 <BiBookmarkAlt className="text-3xl" />
@@ -104,12 +104,7 @@ const Fqa = () => {
               })}
             </div>
           </div>
-
-
         </div>
-
-
-
       </div>
     </div>
   );

@@ -17,11 +17,11 @@ const Menubar = () => {
       link: "/about",
       icon: "info",
     },
-    {
-      name: "Contact",
-      link: "/contact",
-      icon: "envelope",
-    },
+    // {
+    //   name: "Contact",
+    //   link: "/contact",
+    //   icon: "envelope",
+    // },
     {
       name: "Instructor",
       link: "/instructor",
@@ -32,21 +32,21 @@ const Menubar = () => {
       link: "/fqa",
       icon: "envelope",
     },
-    {
-      name: "Logout",
-      link: "/logout",
-      icon: "sign-out-alt",
-    },
-    {
-      name: "Login",
-      link: "/profile",
-      icon: "sign-in-alt",
-    },
+    // {
+    //   name: "Logout",
+    //   link: "/logout",
+    //   icon: "sign-out-alt",
+    // },
+    // {
+    //   name: "Login",
+    //   link: "/profile",
+    //   icon: "sign-in-alt",
+    // },
   ];
 
   return (
     <>
-      <nav className="border-b w-full bg-alpha">
+      <nav className="border-b w-full bg-green-500">
         <ul className="sm:max-w-6xl md:mx-auto text-white flex flex-row-reverse justify-around items-center">
           {menuList.map((item, index) => {
             return (

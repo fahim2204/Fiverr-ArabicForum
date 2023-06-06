@@ -22,8 +22,8 @@ const instructorprofile = () => {
                                     <span className='font-bold text-lg text-gray-400'>Junior Artist</span>
                                 </div>
 
-                                <div className="bg-gray-300 rounded-xl p-2">
-                                    <div className="flex justify-between space-x-4 p-2 my-4">
+                                <div className="bg-gray-300 rounded-xl p-4">
+                                    <div className="flex justify-between space-x-2 p-4 my-4">
                                         <span className='font-bold inline-block text-center'>Articles<br />
                                             <span className='justify-start items-start text-left'>41</span>
                                         </span>
@@ -37,7 +37,7 @@ const instructorprofile = () => {
                                 </div>
                                 <div className="m-auto flex space-x-4">
                                     <Link href="/askquestion">
-                                        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border border-green-700 rounded my-5">Ask question</button>
+                                        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border border-green-700 rounded-xl my-5">Ask question</button>
                                     </Link>
 
                                 </div>
