@@ -19,7 +19,8 @@ const instructorprofile = () => {
                             <div className="max-w-full lg:w-1/2 p-4 space-y-1 m-auto">
                                 <div className="justify-start items-start text-left py-4">
                                     <span className='font-bold text-xl'>Profile Name</span><br />
-                                    <span className='font-bold text-lg text-gray-400'>Junior Artist</span>
+                                    <span className='font-bold text-lg text-gray-400'>Junior Artist</span> <br></br>
+                                    <span className='font-bold text-lg text-gray-400'>instructor bio</span>
                                 </div>
 
                                 <div className="bg-gray-300 rounded-xl p-4">

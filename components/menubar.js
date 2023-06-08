@@ -22,6 +22,11 @@ const Menubar = () => {
     //   link: "/contact",
     //   icon: "envelope",
     // },
+        {
+      name: "Admin",
+      link: "/sidebar",
+      icon: "envelope",
+    },
     {
       name: "Instructor",
       link: "/instructor",
@@ -47,7 +52,7 @@ const Menubar = () => {
   return (
     <>
       <nav className="border-b w-full bg-green-600">
-        <ul className="sm:max-w-6xl md:mx-auto text-white flex flex-row-reverse justify-around items-center">
+        <ul className="sm:max-w-7xl md:mx-auto text-white flex flex-row-reverse justify-around items-center">
           {menuList.map((item, index) => {
             return (
               <li

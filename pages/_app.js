@@ -7,7 +7,7 @@ import Menubar from '../components/menubar'
 export default function App({  Component, pageProps: { session, ...pageProps } }) {
   return (
     <SessionProvider session={session}>
-      <Navbar/>
+      {/* <Navbar/> */}
       <Menubar/>
       <Component {...pageProps}/>
       <Footer/>
