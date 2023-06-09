@@ -6,7 +6,7 @@ const AddInstructorForm = () => {
     const [designation, setDesignation] = useState('');
     const [bio, setBio] = useState('');
     const [institution, setInstitution] = useState('');
-   
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -22,68 +22,67 @@ const AddInstructorForm = () => {
 
     return (
         <div className="max-w-7xl  p-5  md:p-10  ">
-            <div className=" border p-5 rounded-xl bg-green-200">
-                <form onSubmit={handleSubmit} className="mx-auto ">
-                    <div className="mb-4">
+            <div className=" border p-5 rounded-xl bg-green-200 ">
+                <form onSubmit={handleSubmit} className="mx-auto  ">
+                    <div className="mb-4 sm:px-32">
                         <label htmlFor="name" className="block text-gray-700 font-bold mb-2">
                             Name:
                         </label>
                         <input
                             type="text"
                             id="name"
-                            className="w-full border  border-gray-300 rounded-lg px-4 py-2"
+                            className="w-full  border  border-gray-300 rounded-lg px-4 py-2"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             required
                         />
                     </div>
 
-                    <div className="mb-4">
-                        <label htmlFor="name" className="block text-gray-700 font-bold mb-2">
-                           Designation:
+                    <div className="mb-4 sm:px-32">
+                        <label htmlFor="designation" className="block text-gray-700 font-bold mb-2">
+                            Designation:
                         </label>
                         <input
                             type="text"
                             id="designation"
                             className="w-full border border-gray-300 rounded-lg px-4 py-2"
                             value={designation}
-                            onChange={(e) => setName(e.target.value)}
+                            onChange={(e) => setDesignation(e.target.value)} 
                             required
                         />
                     </div>
 
-                    <div className="mb-4">
-                        <label htmlFor="name" className="block text-gray-700 font-bold mb-2">
-                          Bio:
+                    <div className="mb-4 sm:px-32">
+                        <label htmlFor="bio" className="block text-gray-700 font-bold mb-2">
+                            Bio:
                         </label>
-                        <input
-                            type="text"
+                        <textarea
                             id="bio"
                             className="w-full border border-gray-300 rounded-lg px-4 py-2"
                             value={bio}
-                            onChange={(e) => setName(e.target.value)}
+                            onChange={(e) => setBio(e.target.value)}
                             required
                         />
                     </div>
-                    <div className="mb-4">
-                        <label htmlFor="name" className="block text-gray-700 font-bold mb-2">
-                         Institution:
+
+                    <div className="mb-4 sm:px-32">
+                        <label htmlFor="institution" className="block text-gray-700 font-bold mb-2">
+                            Institution:
                         </label>
                         <input
                             type="text"
                             id="institution"
-                            className="w-full border border-gray-300 rounded-lg px-4 py-2"
+                            className="w-full  border border-gray-300 rounded-lg px-4 py-2"
                             value={institution}
-                            onChange={(e) => setName(e.target.value)}
-                            required
+                            onChange={(e) => setInstitution(e.target.value)} 
                         />
                     </div>
-                    <div className="flex justify-end">
+                    <div className="flex justify-end sm:px-32">
                         <button
                             type="submit"
-                            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg"
+                            className="bg-green-500 hover:bg-green-300 text-white font-bold py-2 px-4 rounded-lg"
                         >
-                            Next
+                            Submit
                         </button>
                     </div>
                 </form>
