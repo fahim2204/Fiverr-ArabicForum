@@ -2,60 +2,59 @@ import React, { useState } from "react";
 import { BsBookmark } from "react-icons/bs";
 import { BiBookmarkAlt } from "react-icons/bi";
 import Link from "next/link";
-
 const contents = [
   {
     id: "1",
-    url: "/fqa",
+    url: "/qanswer",
     ques: "How can we have free will when the divine decree controls us?",
     time: "04-06-2023",
   },
   {
     id: "2",
-    url: "/fqa",
+    url: "/qanswer",
     ques: "How can we have free will when the divine decree controls us?",
     time: "04-06-2023",
   },
   {
     id: "3",
-    url: "/fqa",
+    url: "/qanswer",
     ques: "How can we have free will when the divine decree controls us?",
     time: "04-06-2023",
   },
   {
     id: "4",
-    url: "/fqa",
+    url: "/qanswer",
     ques: "How can we have free will when the divine decree controls us?",
     time: "04-06-2023",
   },
   {
     id: "5",
-    url: "/fqa",
+    url: "/qanswer",
     ques: "How can we have free will when the divine decree controls us?",
     time: "04-06-2023",
   },
 
   {
     id: "6",
-    url: "/fqa",
+    url: "/qanswer",
     ques: "How can we have free will when the divine decree controls us?",
     time: "04-06-2023",
   },
   {
     id: "7",
-    url: "/fqa",
+    url: "/qanswer",
     ques: "How can we have free will when the divine decree controls us?",
     time: "04-06-2023",
   },
   {
     id: "8",
-    url: "/fqa",
+    url: "/qanswer",
     ques: "How can we have free will when the divine decree controls us?",
     time: "04-06-2023",
   },
   {
     id: "9",
-    url: "/fqa",
+    url: "/qanswer",
     ques: "How can we have free will when the divine decree controls us?",
     time: "04-06-2023",
   },
