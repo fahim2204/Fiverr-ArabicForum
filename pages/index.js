@@ -70,11 +70,9 @@ const Fqa = () => {
     <div>
       <div className="max-w-7xl m-auto">
         <div className="grid md:grid-cols-12 gap-5 py-5 max-h-full">
-          <div className="col-span-12 md:col-span-4 bg-gray-50 p-4 rounded">
-            <div className=" font-bold text-xl text-green-700 ">
-              <h2 className="text-center py-3">
-                google ad
-              </h2>
+          <div className="col-span-12 md:col-span-4 bg-gray-50">
+            <div className="font-bold text-xl text-green-700 ">
+                <img className="w-full rounded-xl" src="/image/ad.webp" alt="ad" />
             </div>
           </div>
           <div className="col-span-12 md:col-span-8 bg-green-100  border-t-4 border-green-700 rounded p-4">

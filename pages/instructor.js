@@ -49,14 +49,12 @@ const instructor = () => {
     return (
         <div id="instructor" className="max-w-7xl md:mx-auto py-6 text-center">
             <div className="grid md:grid-cols-12 px-4 gap-4">
-                <div className="md:col-span-3">
-                    <div className=" font-bold text-xl text-green-700 ">
-                        <h2 className="text-center py-3">
-                            google ad
-                        </h2>
-                    </div>
-                </div>
-                <div className="md:col-span-9">
+            <div className="col-span-12 md:col-span-4 bg-gray-50">
+            <div className="font-bold text-xl text-green-700 ">
+                <img className="w-full rounded-xl" src="/image/ad.webp" alt="ad" />
+            </div>
+          </div>
+                <div className="md:col-span-8">
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                         {instructors.map((instructor, index) => (
                             <div key={index} className="flex flex-col items-center">

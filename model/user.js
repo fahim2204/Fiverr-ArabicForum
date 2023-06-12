@@ -1,19 +1,47 @@
-const mongoose = require('mongoose');
+import pool from "../lib/dbConnect.js";
 
-const userSchema = new mongoose.Schema({
-  fullName: String,
-  username: { type: String, required: true, unique: true },
-  password: { type: String, required: true, minlength: 4 },
-  profilePic: String,
-  gender: String,
-  email: { type: String, unique: false },
-  country: String,
-  token: String,
-  status: Number,
-  joinedAt: { type: Date, default: Date.now },
-  modifiedAt: { type: Date, default: Date.now },
-  lastLogin: { type: Date, default: Date.now },
-});
+export default {
+  GetAll: async () => {
+    const [rows] = await pool.query("SELECT * FROM users");
+    return rows;
+  },
 
+  GetByUserId: async (id) => {
+    const [rows] = await pool.query("SELECT * FROM users WHERE id = ?", [id]);
+    return rows[0];
+  },
 
-module.exports = mongoose.models.User || mongoose.model('User', userSchema);
+  GetByUsername: async (username) => {
+    const [rows] = await pool.query("SELECT * FROM users WHERE username = ?", [
+      username,
+    ]);
+    return rows[0];
+  },
+
+  GetByToken: async (token) => {
+    const [rows] = await pool.query("SELECT * FROM users WHERE token = ?", [
+      token,
+    ]);
+    return rows[0];
+  },
+
+  RegisterUser: async (user) => {
+    const [result] = await pool.query("INSERT INTO users SET ?", user);
+    return result.insertId;
+  },
+
+  Update: async (id, user) => {
+    await pool.query("UPDATE users SET ? WHERE id = ?", [user, id]);
+  },
+
+  UpdatePassword: async (id, password) => {
+    await pool.query("UPDATE users SET password = ? WHERE id = ?", [
+      password,
+      id,
+    ]);
+  },
+
+  Delete: async (id) => {
+    await pool.query("DELETE FROM users WHERE id = ?", [id]);
+  },
+};

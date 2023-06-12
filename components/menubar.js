@@ -1,10 +1,6 @@
 import Link from "next/link";
-import { useSession, signIn, signOut } from "next-auth/react";
-import { FiLogOut } from "react-icons/fi";
 
 const Menubar = () => {
-  const { data: session } = useSession();
-  console.log(useSession());
 
   const menuList = [
     {
