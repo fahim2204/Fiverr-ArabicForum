@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Link from "next/link";
 
 const AddInstructorForm = () => {
     const [name, setName] = useState('');
@@ -12,7 +11,6 @@ const AddInstructorForm = () => {
         e.preventDefault();
 
         // Handle form submission logic here
-
         // Reset form fields
         setName('');
         setDesignation('');
@@ -21,9 +19,9 @@ const AddInstructorForm = () => {
     };
 
     return (
-        <div className="max-w-7xl  p-5  md:p-10  ">
-            <div className=" border p-5 rounded-xl bg-green-200 ">
-                <form onSubmit={handleSubmit} className="mx-auto  ">
+        <div className="max-w-7xl p-5 md:p-10">
+            <div className="border p-5 rounded-xl bg-green-200 ">
+                <form onSubmit={handleSubmit} className="mx-auto ">
                     <div className="mb-4 sm:px-32">
                         <label htmlFor="name" className="block text-gray-700 font-bold mb-2">
                             Name:

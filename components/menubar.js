@@ -17,14 +17,9 @@ const Menubar = () => {
       link: "/about",
       icon: "info",
     },
-    // {
-    //   name: "Contact",
-    //   link: "/contact",
-    //   icon: "envelope",
-    // },
         {
       name: "Admin",
-      link: "/sidebar",
+      link: "/admin",
       icon: "envelope",
     },
     {
@@ -32,21 +27,6 @@ const Menubar = () => {
       link: "/instructor",
       icon: "envelope",
     },
-    {
-      name: "New answer",
-      link: "/fqa",
-      icon: "envelope",
-    },
-    // {
-    //   name: "Logout",
-    //   link: "/logout",
-    //   icon: "sign-out-alt",
-    // },
-    // {
-    //   name: "Login",
-    //   link: "/profile",
-    //   icon: "sign-in-alt",
-    // },
   ];
 
   return (
@@ -55,14 +35,14 @@ const Menubar = () => {
         <ul className="sm:max-w-7xl md:mx-auto text-white flex flex-row-reverse justify-around items-center">
           {menuList.map((item, index) => {
             return (
+              <Link href={item.link}>
               <li
                 key={index}
                 className="hover:bg-green-400 py-3 px-5 transition-all duration-300 cursor-pointer border-b-transparent hover:border-b-gray-700 border-b-2"
               >
-                <Link href={item.link}>
                   <span>{item.name}</span>
-                </Link>
               </li>
+                </Link>
             );
           })}
         </ul>
