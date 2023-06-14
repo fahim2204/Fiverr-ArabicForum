@@ -132,12 +132,29 @@
 
 // export default AssignPage;
 
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { baseUrl } from "../utils/config";
 
 const AssignPage = () => {
   const [selectedPerson, setSelectedPerson] = useState("");
   const [youtubeUrl, setYoutubeUrl] = useState("");
   const [assignedVideos, setAssignedVideos] = useState([]);
+  const [instructorData, setInstructorData] = useState([]);
+
+  useEffect(() => {
+    getAllInstructorList();
+  }, []);
+
+  const getAllInstructorList = async () => {
+    try {
+      const response = await axios.get(`${baseUrl}/userdropdown`);
+      // console.log(response.data);
+      setInstructorData(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   const handlePersonSelect = (e) => {
     setSelectedPerson(e.target.value);
@@ -164,11 +181,6 @@ const AssignPage = () => {
     setAssignedVideos(updatedVideos);
   };
 
-  const dropdownOptions = [
-    { value: "john_doe", label: "John Doe" },
-    { value: "jane_smith", label: "Jane Smith" },
-    { value: "bob_johnson", label: "Bob Johnson" },
-  ];
 
   // Group assigned videos by person
   const groupedVideos = assignedVideos.reduce((groups, video) => {
@@ -182,28 +194,34 @@ const AssignPage = () => {
   return (
     <div className="max-w-7xl mx-auto p-5 md:p-10">
       <h1 className="text-2xl font-bold mb-5 text-center">Assign Videos</h1>
-      <form onSubmit={handleVideoAssign} className="rounded-xl bg-green-200">
-        <div className="grid grid-cols-12 gap-4 border p-5 sm:px-32 ">
+      <form onSubmit={handleVideoAssign} className="rounded-xl bg-green-200 max-w-lg mx-auto p-6">
+        <div className="grid grid-cols-12 gap-4 border">
           <div className="col-span-12">
-            <label htmlFor="person" className="block text-gray-700 font-bold mb-2">
+            <label
+              htmlFor="person"
+              className="block text-gray-700 font-bold mb-2"
+            >
               Select Person:
             </label>
             <select
               id="person"
-              className="w-full sm:max-w-2xl border border-gray-300 rounded-xl px-4 py-2"
+              className="w-full sm:max-w-2xl border border-gray-300 cursor-pointer rounded-xl px-4 py-2"
               value={selectedPerson}
               onChange={handlePersonSelect}
             >
               <option value="">Select a person</option>
-              {dropdownOptions.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
+              {instructorData.map((instructor, index) => (
+                <option key={index} value={instructor.id}>
+                  {instructor.username}
                 </option>
               ))}
             </select>
           </div>
           <div className="col-span-12">
-            <label htmlFor="youtubeUrl" className="block text-gray-700 font-bold mb-2">
+            <label
+              htmlFor="youtubeUrl"
+              className="block text-gray-700 font-bold mb-2"
+            >
               YouTube Video URL:
             </label>
             <input
@@ -216,10 +234,10 @@ const AssignPage = () => {
             />
           </div>
         </div>
-        <div className="mt-4 p-5 sm:px-32">
+        <div className="mt-4">
           <button
             type="submit"
-            className="bg-green-500 hover:bg-green-300 text-white font-bold py-2 px-4 rounded"
+            className="bg-green-500 hover:bg-green-300 text-white font-bold py-2 px-4 rounded transition-all duration-300"
           >
             Assign Video
           </button>
@@ -238,13 +256,15 @@ const AssignPage = () => {
                       src={`https://www.youtube.com/embed/${assignedVideo.youtubeUrl}`}
                       title="YouTube Video"
                       onMouseEnter={(e) => {
-                        const deleteButton = e.target.parentNode.nextElementSibling;
+                        const deleteButton =
+                          e.target.parentNode.nextElementSibling;
                         if (deleteButton) {
                           deleteButton.style.opacity = "1";
                         }
                       }}
                       onMouseLeave={(e) => {
-                        const deleteButton = e.target.parentNode.nextElementSibling;
+                        const deleteButton =
+                          e.target.parentNode.nextElementSibling;
                         if (deleteButton) {
                           deleteButton.style.opacity = "0";
                         }
@@ -259,7 +279,6 @@ const AssignPage = () => {
                   </button>
                 </div>
               </div>
-
             ))}
           </div>
         </div>
@@ -269,4 +288,3 @@ const AssignPage = () => {
 };
 
 export default AssignPage;
-

@@ -5,6 +5,10 @@ export default {
     const [rows] = await pool.query("SELECT * FROM users");
     return rows;
   },
+  GetUsernameAndId: async () => {
+    const [rows] = await pool.query("SELECT id, username FROM users");
+    return rows;
+  },
 
   GetByUserId: async (id) => {
     const [rows] = await pool.query("SELECT * FROM users WHERE id = ?", [id]);

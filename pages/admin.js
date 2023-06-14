@@ -13,8 +13,8 @@ const Sidebar = () => {
   const menuItems = [
     { title: "Add instructor", link: "#", component: <AddInstructor /> },
     { title: "Instructor list", link: "#", component: <InstructorList /> },
-    { title: "Assign", link: "#", component: <Assign /> },
-    { title: "PostDetails", link: "#", component: <PostDetails /> },
+    { title: "Assign Video", link: "#", component: <Assign /> },
+    { title: "Question Details", link: "#", component: <PostDetails /> },
   ];
 
   return (
