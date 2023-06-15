@@ -11,8 +11,6 @@ const Login = () => {
   const router = useRouter();
   const [serverError, setServerError] = useState(null);
 
-
-
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -50,9 +48,15 @@ const Login = () => {
               <h3 className="mb-3 mt-1 text-base font-semibold text-gray-700 text-center">
                 Welcome Back! Please Login
               </h3>
-              <form onSubmit={formik.handleSubmit} className="flex flex-col space-y-3">
+              <form
+                onSubmit={formik.handleSubmit}
+                className="flex flex-col space-y-3"
+              >
                 <div className="flex flex-col">
-                  <label htmlFor="username" className="text-sm font-semibold text-gray-500">
+                  <label
+                    htmlFor="username"
+                    className="text-sm font-semibold text-gray-500"
+                  >
                     Username
                   </label>
                   <input
@@ -74,7 +78,10 @@ const Login = () => {
                 </div>
                 <div className="flex flex-col">
                   <div className="flex items-center justify-between">
-                    <label htmlFor="password" className="text-sm font-semibold text-gray-500">
+                    <label
+                      htmlFor="password"
+                      className="text-sm font-semibold text-gray-500"
+                    >
                       Password
                     </label>
                   </div>
@@ -96,7 +103,9 @@ const Login = () => {
                   </div>
                 </div>
                 {serverError && (
-                  <div className="text-rose-600 text-sm text-center">{serverError}</div>
+                  <div className="text-rose-600 text-sm text-center">
+                    {serverError}
+                  </div>
                 )}
 
                 <div>
@@ -109,34 +118,21 @@ const Login = () => {
                 </div>
                 <h3 className="mb-3 mt-1 text-sm font-semibold text-gray-500 text-center">
                   Not Registered?{" "}
-                  <Link href={"/register"} className="hover:text-sky-500 cursor-pointer">
+                  <Link
+                    href={"/register"}
+                    className="hover:text-sky-500 cursor-pointer"
+                  >
                     Register
                   </Link>
                 </h3>
                 <div className="flex flex-col space-y-5">
                   <span className="flex items-center justify-center space-x-2">
                     <span className="h-px bg-gray-400 w-14"></span>
-                    <span className="font-normal text-gray-500">or login with</span>
+                    <span className="font-normal text-gray-500">
+                      or login with
+                    </span>
                     <span className="h-px bg-gray-400 w-14"></span>
                   </span>
-                  <div className="flex items-center justify-center space-x-2">
-                    <button
-                      onClick={handleGoogleLogin}
-                      type="button"
-                      className="flex items-center justify-center px-4 py-2 hover:text-white space-x-2 transition-colors duration-300 border text-[#DB4437] border-[#DB4437] rounded-md group hover:bg-[#DB4437] focus:outline-none"
-                    >
-                      <span>
-                        <ImGoogle3 className="text-2xl" />
-                      </span>
-                    </button>
-                    <button
-                      onClick={handleFacebookLogin}
-                      type="button"
-                      className="flex items-center justify-center px-4 py-2 space-x-2 text-blue-500 hover:text-white transition-colors duration-300 border border-blue-500 rounded-md group hover:bg-blue-500 focus:outline-none"
-                    >
-                      <MdFacebook className="text-2xl" />
-                    </button>
-                  </div>
                 </div>
               </form>
             </div>
