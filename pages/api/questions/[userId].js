@@ -1,5 +1,5 @@
-import User from "../../../model/user";
 import Video from "../../../model/video";
+import { validateToken } from "../../../middleware/auth";
 
 export default async (req, res) => {
   const { method } = req;
@@ -8,21 +8,19 @@ export default async (req, res) => {
   switch (method) {
     case "GET":
       try {
-        const user = await User.GetByUserId(userId);
-        if (!user) {
+        const video = await Video.GetByUserId(userId);
+        if (!video) {
           res.status(404).json({});
           return;
         }
-        const { password, token, ...userData } = user;
-        const video = await Video.GetByUserId(userId);
-        res.status(200).json({...userData,video});
+        res.status(200).json(video);
       } catch (error) {
         res.status(500).send(error);
       }
       break;
     case "DELETE":
       try {
-        await User.Delete(userId);
+        await Video.Delete(userId);
         res
           .status(200)
           .json({ success: true, msg: "User deleted successfully" });
@@ -32,7 +30,7 @@ export default async (req, res) => {
 
       break;
     default:
-      res.status(400).json({ success: false });
+      res.status(405).json({ success: false, msg: "Bad Request" });
       break;
   }
 };

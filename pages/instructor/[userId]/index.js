@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import logo from "../../public/image/instagram.webp";
+import logo from "../../../public/image/instagram.webp";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import axios from "axios";
-import { baseUrl } from "../../utils/config";
+import { convertToEmbeddedUrl } from "../../../utils/helper";
+import { baseUrl } from "../../../utils/config";
 
 const instructorprofile = () => {
   const [instructorData, setInstructorData] = useState({});
@@ -56,10 +57,12 @@ const instructorprofile = () => {
                   </span>
                   <br />
                   <span className="font-medium text-lg text-gray-400">
-                  {instructorData.designation}
+                    {instructorData.designation}
                   </span>
-                  <br/>
-                  <span className="text-lg text-black">{instructorData.bio}</span>
+                  <br />
+                  <span className="text-lg text-black">
+                    {instructorData.bio}
+                  </span>
                 </div>
 
                 <div className="bg-gray-300 rounded-xl p-2">
@@ -88,7 +91,7 @@ const instructorprofile = () => {
                   </div>
                 </div>
                 <div className="m-auto flex justify-end space-x-4">
-                  <Link href="/askquestion">
+                  <Link href={`/instructor/${instructorData.id}/ask`}>
                     <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border border-green-700 rounded-xl my-5">
                       Ask question
                     </button>
@@ -96,34 +99,19 @@ const instructorprofile = () => {
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 px-4">
-              <div className="rounded-lg overflow-hidden">
-                <iframe
-                  width="100%"
-                  height="200"
-                  src="https://www.youtube.com/embed/VIDEO_ID_1"
-                  title="YouTube Video 1"
-                  allowFullScreen
-                />
-              </div>
-              <div className="rounded-lg overflow-hidden">
-                <iframe
-                  width="100%"
-                  height="200"
-                  src="https://www.youtube.com/embed/VIDEO_ID_2"
-                  title="YouTube Video 2"
-                  allowFullScreen
-                />
-              </div>
-              <div className="rounded-lg overflow-hidden">
-                <iframe
-                  width="100%"
-                  height="200"
-                  src="https://www.youtube.com/embed/VIDEO_ID_3"
-                  title="YouTube Video 3"
-                  allowFullScreen
-                />
-              </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-8">
+              {instructorData?.video?.map((assignedVideo, index) => (
+                <div key={index}>
+                  <div className="rounded-lg overflow-hidden">
+                    <iframe
+                      width="100%"
+                      height="130"
+                      src={convertToEmbeddedUrl(assignedVideo.url)}
+                      title="YouTube Video"
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
