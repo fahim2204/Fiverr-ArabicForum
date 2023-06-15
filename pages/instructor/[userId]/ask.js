@@ -11,6 +11,8 @@ import JoditEditor from "jodit-react";
 //   () => import("jodit-react").then((module) => module.default),
 //   { ssr: false }
 // );
+const DynamicJoditEditor = dynamic(() => import('jodit-react'), { ssr: false });
+
 
 const AskQuestionPage = () => {
   const editor = useRef(null);
@@ -88,7 +90,7 @@ const AskQuestionPage = () => {
           onChange={(e) => setTitle(e.target.value)}
           className="w-full px-4 py-5 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        <JoditEditor
+        <DynamicJoditEditor
           ref={editor}
           value={content}
         //   config={config}
