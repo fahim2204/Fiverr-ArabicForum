@@ -8,7 +8,7 @@ export default {
 
   GetByUserId: async (id) => {
     const [rows] = await pool.query("SELECT * FROM assign_video WHERE fkUserId = ?", [id]);
-    return rows[0];
+    return rows;
   },
 
   GetByUsername: async (username) => {

@@ -1,4 +1,4 @@
-import Video from "../../../model/user";
+import Video from "../../../model/video";
 import { validateToken } from "../../../middleware/auth";
 
 export default async (req, res) => {
