@@ -4,11 +4,9 @@ import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import { BiArrowBack, BiCamera } from "react-icons/bi";
 import { useEffect, useState, useRef } from "react";
-import { getSession, useSession } from "next-auth/react";
 
 export default function Home() {
   const imageInputRef = useRef(null);
-  const { data: session } = useSession();
 
   return (
     <>
@@ -17,7 +15,7 @@ export default function Home() {
       </Head>
       <main>
         <Navbar />
-        {session && (
+        {true && (
           <div className="sm:max-w-4xl mx-auto mt-6 grid grid-cols-14 gap-8 mb-5">
             <div className="col-span-4">
               <div className="flex flex-col items-center border rounded-xl shadow px-8 py-4">
@@ -137,18 +135,3 @@ export default function Home() {
   );
 }
 
-export async function getServerSideProps({ req }) {
-  const session = await getSession({ req });
-
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/login",
-        premanent: false,
-      },
-    };
-  }
-  return {
-    props: { session },
-  };
-}

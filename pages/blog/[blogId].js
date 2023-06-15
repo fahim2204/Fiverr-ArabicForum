@@ -6,7 +6,6 @@ import { BiArrowBack } from "react-icons/bi";
 import { useRouter } from 'next/router'
 import { useEffect, useState, useRef } from "react";
 import { BallTriangle } from "react-loader-spinner";
-import { getSession, useSession } from "next-auth/react";
 import axios from "axios";
 import { apiUrl, MainTitle, notify } from "../../utils/config";
 import { ToastContainer } from "react-toastify";
@@ -23,13 +22,12 @@ export default function BlogByID() {
   const [comment, setComment] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const { data: session } = useSession();
 
   const [formData, setFormData] = useState({
     commentDetails: "",
     post: blogId,
-    username: session?.email,
-    fullName: session?.name,
+    username: "",
+    fullName: "",
   });
 
   const handleFormData = (e) => {
@@ -135,7 +133,7 @@ export default function BlogByID() {
                 </div>
                 <div className="flex flex-col border rounded-xl shadow px-8 py-4 mt-4">
                   <h3 className='font-semibold text-2xl mb-3'>Comments:</h3>
-                  {session ? (<div className="flex mb-3">
+                  {true ? (<div className="flex mb-3">
                     <form onSubmit={handlePostCommet}>
                       <input
                         type="text"
@@ -167,13 +165,9 @@ export default function BlogByID() {
                         )
                       })}
                     </>}
-
-
                   </div>
                 </div>
               </>)}
-
-
           </div>
           <div className="col-span-4">
             <div className="flex flex-col">

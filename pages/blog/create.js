@@ -5,7 +5,6 @@ import Footer from "../../components/footer";
 import { BiArrowBack } from "react-icons/bi";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { getSession, useSession } from "next-auth/react";
 import axios from "axios";
 import { apiUrl, MainTitle, notify } from "../../utils/config";
 import { ToastContainer } from "react-toastify";
@@ -15,7 +14,6 @@ import { ToastContainer } from "react-toastify";
 export default function Home() {
   const router = useRouter();
   const [serverError, setServerError] = useState(null);
-  const { data: session } = useSession();
   const [selectedFile, setSelectedFile] = useState("");
   const [imgBase64, setImgBase64] = useState("");
   const [profileImage, setProfileImage] = useState("");
@@ -46,8 +44,8 @@ export default function Home() {
     postTitle: "",
     postDetails: "",
     postImage: "",
-    username: session.email,
-    fullName: session.name,
+    username: "",
+    fullName: "",
   });
 
   useEffect(() => {
@@ -142,19 +140,3 @@ export default function Home() {
   );
 }
 
-
-export async function getServerSideProps({ req }) {
-  const session = await getSession({ req });
-
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/login",
-        premanent: false,
-      },
-    };
-  }
-  return {
-    props: { session },
-  };
-}

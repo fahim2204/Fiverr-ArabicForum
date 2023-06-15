@@ -2,7 +2,6 @@ import Head from "next/head";
 import Link from "next/link";
 import { MdFacebook } from "react-icons/md";
 import { ImGoogle3 } from "react-icons/im";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import { useState } from "react";
@@ -12,12 +11,7 @@ const Login = () => {
   const router = useRouter();
   const [serverError, setServerError] = useState(null);
 
-  const handleGoogleLogin = () => {
-    signIn("google", { callbackUrl: "/" });
-  };
-  const handleFacebookLogin = () => {
-    signIn("facebook", { callbackUrl: "/" });
-  };
+
 
   const formik = useFormik({
     initialValues: {
