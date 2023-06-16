@@ -11,7 +11,10 @@ const PostDetails = () => {
 
   const getAllQuestionList = async () => {
     try {
-      const response = await axios.get(`${baseUrl}/questions`);
+      const response = await axios.post(`${baseUrl}/questions/instructor`, {
+        instructorId: 1,
+        mode: 0,
+      });
       // console.log(response.data);
       setQuestionData(response.data);
     } catch (error) {
@@ -36,7 +39,9 @@ const PostDetails = () => {
 
   return (
     <div className="max-w-7xl mx-auto p-5 md:p-10">
-      <h1 className="text-2xl font-bold mb-5 text-center">Post Details</h1>
+      <h1 className="text-2xl font-bold mb-5 text-center">
+        Pending Question For You
+      </h1>
       <div className="overflow-x-auto">
         <table className="min-w-full border rounded-3xl border-gray-300">
           <thead className="bg-green-200">
@@ -60,10 +65,10 @@ const PostDetails = () => {
                 ></td>
                 <td className="py-2 px-4 border-b text-center">
                   <button
-                    className="text-red-500 font-bold"
+                    className="text-green-500 font-bold hover:underline"
                     onClick={() => handleDelete(question.id)}
                   >
-                    Delete
+                    Answer
                   </button>
                 </td>
               </tr>

@@ -1,14 +1,14 @@
-import Video from "../../../model/video";
+import Question from "../../../model/question";
 import { validateToken } from "../../../middleware/auth";
 
 export default async (req, res) => {
   const { method } = req;
-  const { userId } = req.query;
+  const { questionId } = req.query;
 
   switch (method) {
     case "GET":
       try {
-        const video = await Video.GetByUserId(userId);
+        const video = await Question.GetByQuestionId(questionId);
         if (!video) {
           res.status(404).json({});
           return;
@@ -20,10 +20,10 @@ export default async (req, res) => {
       break;
     case "DELETE":
       try {
-        await Video.Delete(userId);
+        await Question.Delete(questionId);
         res
           .status(200)
-          .json({ success: true, msg: "User deleted successfully" });
+          .json({ success: true, msg: "Question deleted successfully" });
       } catch (err) {
         res.status(500).json({ error: err.message });
       }

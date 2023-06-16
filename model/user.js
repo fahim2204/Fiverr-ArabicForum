@@ -2,11 +2,11 @@ import pool from "../lib/dbConnect.js";
 
 export default {
   GetAll: async () => {
-    const [rows] = await pool.query("SELECT * FROM users");
+    const [rows] = await pool.query("SELECT * FROM users where type = 'instructor'");
     return rows;
   },
   GetUsernameAndId: async () => {
-    const [rows] = await pool.query("SELECT id, username FROM users");
+    const [rows] = await pool.query("SELECT id, username FROM users where type = 'instructor'");
     return rows;
   },
 

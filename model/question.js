@@ -6,16 +6,27 @@ export default {
     return rows;
   },
 
-  GetByUserId: async (id) => {
-    const [rows] = await pool.query("SELECT * FROM questions WHERE fkUserId = ?", [id]);
+  GetByQuestionId: async (id) => {
+    const [rows] = await pool.query("SELECT * FROM questions WHERE id = ?", [
+      id,
+    ]);
+    return rows[0];
+  },
+
+  GetByQuestionByInstructorIdAnswered: async (id) => {
+    const [rows] = await pool.query(
+      "SELECT * FROM questions WHERE fkUserId = ? AND isAnswered = 1",
+      [id]
+    );
     return rows;
   },
 
-  GetByUsername: async (username) => {
-    const [rows] = await pool.query("SELECT * FROM questions WHERE username = ?", [
-      username,
-    ]);
-    return rows[0];
+  GetByQuestionByInstructorIdPending: async (id) => {
+    const [rows] = await pool.query(
+      "SELECT * FROM questions WHERE fkUserId = ? AND isAnswered = 0",
+      [id]
+    );
+    return rows;
   },
 
   AddQuestion: async (question) => {
@@ -26,7 +37,6 @@ export default {
   Update: async (id, user) => {
     await pool.query("UPDATE questions SET ? WHERE id = ?", [user, id]);
   },
-
 
   Delete: async (id) => {
     await pool.query("DELETE FROM questions WHERE id = ?", [id]);

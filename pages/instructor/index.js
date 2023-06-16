@@ -26,7 +26,7 @@ const instructor = () => {
   return (
     <div id="instructor" className="max-w-7xl md:mx-auto py-6 text-center">
       <div className="grid md:grid-cols-12 px-4 gap-4">
-        <div className="col-span-12 md:col-span-4 bg-gray-50">
+        <div className="col-span-12 md:col-span-4 bg-gray-50 px-16">
           <div className="flex justify-center">
             <img className="w-full rounded-xl" src="/image/ad.webp" alt="ad" />
           </div>
@@ -37,9 +37,15 @@ const instructor = () => {
               <Link key={index} href={`/instructor/${instructor.id}`}>
                 <div className="flex flex-col items-center">
                   <Image
-                    src={instructor.profilePic || logo}
+                    src={
+                      instructor.profilePic
+                        ? `/image/instructor/${instructor.profilePic}`
+                        : logo
+                    }
                     alt={instructor.fullName}
-                    className="w-32 h-32 rounded-full object-cover"
+                    height={128}
+                    width={128}
+                    className="w-32 h-32 rounded-full object-cover border"
                   />
                   <div className="mt-2 text-2xl font-semibold">
                     {instructor.fullName}

@@ -10,32 +10,21 @@ import { baseUrl } from "../../../utils/config";
 //   () => import("jodit-react").then((module) => module.default),
 //   { ssr: false }
 // );
-const DynamicJoditEditor = dynamic(() => import('jodit-react'), { ssr: false });
-
+const DynamicJoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
 
 const AskQuestionPage = () => {
   const editor = useRef(null);
+  const router = useRouter();
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
   const [instructorData, setInstructorData] = useState({});
-  const router = useRouter();
   const { userId } = router.query;
-
-
 
   useEffect(() => {
     if (userId) {
       getSingleInstructor();
     }
   }, [userId]);
-
-//   useEffect(() => {
-//     if (editor.current) {
-//       editor.current.events.on("change", (newValue) => {
-//         setContent(newValue);
-//       });
-//     }
-//   }, []);
 
   const getSingleInstructor = async () => {
     try {
@@ -54,6 +43,7 @@ const AskQuestionPage = () => {
         fkUserId: instructor,
         description: desc,
       });
+      router.push("/")
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -68,12 +58,15 @@ const AskQuestionPage = () => {
       <div className="flex flex-col items-center">
         <div className="w-32 h-32 rounded-full overflow-hidden">
           <Image
-            src={logo}
-            alt={instructorData.fullName || "profile"}
-            className="object-cover"
-            responsive
-            width={128}
+            src={
+              instructorData.profilePic
+                ? `/image/instructor/${instructorData.profilePic}`
+                : logo
+            }
+            alt={instructorData.fullName}
             height={128}
+            width={128}
+            className="w-32 h-32 rounded-full object-cover border"
           />
         </div>
         <div className="mt-2 text-xl font-semibold">
@@ -92,7 +85,7 @@ const AskQuestionPage = () => {
         <DynamicJoditEditor
           ref={editor}
           value={content}
-        //   config={config}
+          //   config={config}
           tabIndex={1} // tabIndex of textarea
           onBlur={(newContent) => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
           onChange={(newContent) => setContent(newContent)}

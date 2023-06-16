@@ -4,6 +4,12 @@ import { hash } from "bcryptjs";
 
 import multer from "multer";
 
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
 const upload = multer({
   storage: multer.diskStorage({
     destination: "./public/image/instructor",
@@ -16,6 +22,7 @@ const upload = multer({
       // const newFilename = `${username}-${timestamp}-${randomId}.${fileExtension}`;
       const newFilename = `${username}-${timestamp}.${fileExtension}`;
       req.body.profilePic = newFilename;
+      // console.log("New File Name>>",newFilename)
 
       cb(null, newFilename);
     },
@@ -40,7 +47,7 @@ export default async (req, res) => {
         if (err) {
           res
             .status(501)
-            .json({ error: `Sorry something happened! ${err.message}` });
+            .json({ error: `Sorry something happened! ${err}` });
         } else {
           try {
             req.body.password = await hash(req.body.password, 12);
