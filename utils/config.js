@@ -15,7 +15,8 @@ export const notify = (msg) =>
     theme: "light",
   });
 
-export const baseUrl = "http://localhost:3000/api";
+export const baseUr = typeof window !== 'undefined' && window.location.origin;
+export const baseUrl = baseUr+"/api";
 
 // export const isTokenValid = () =>{
 //   const token = localStorage.getItem("token");
