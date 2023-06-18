@@ -4,109 +4,32 @@ import { BiBookmarkAlt } from "react-icons/bi";
 import Link from "next/link";
 import axios from "axios";
 import { baseUrl } from "../utils/config";
-
-const contents = [
-  {
-    id: "1",
-    url: "/qanswer",
-    ques: "How can we have free will when the divine decree controls us?",
-    time: "04-06-2023",
-  },
-  {
-    id: "2",
-    url: "/qanswer",
-    ques: "How can we have free will when the divine decree controls us?",
-    time: "04-06-2023",
-  },
-  {
-    id: "3",
-    url: "/qanswer",
-    ques: "How can we have free will when the divine decree controls us?",
-    time: "04-06-2023",
-  },
-  {
-    id: "4",
-    url: "/qanswer",
-    ques: "How can we have free will when the divine decree controls us?",
-    time: "04-06-2023",
-  },
-  {
-    id: "5",
-    url: "/qanswer",
-    ques: "How can we have free will when the divine decree controls us?",
-    time: "04-06-2023",
-  },
-
-  {
-    id: "6",
-    url: "/qanswer",
-    ques: "How can we have free will when the divine decree controls us?",
-    time: "04-06-2023",
-  },
-  {
-    id: "7",
-    url: "/qanswer",
-    ques: "How can we have free will when the divine decree controls us?",
-    time: "04-06-2023",
-  },
-  {
-    id: "8",
-    url: "/qanswer",
-    ques: "How can we have free will when the divine decree controls us?",
-    time: "04-06-2023",
-  },
-  {
-    id: "9",
-    url: "/qanswer",
-    ques: "How can we have free will when the divine decree controls us?",
-    time: "04-06-2023",
-  },
-];
+import { useRouter } from "next/router";
+import { setCookie, getCookie } from "cookies-next";
 
 const Home = () => {
-  const [qestionData, setQuestionData] = useState([]);
+  const [isError, setIsError] = useState(false);
+  const router = useRouter();
 
-  useEffect(() => {
-    getAllQuestionList();
-  }, []);
-
-  const getAllQuestionList = async () => {
+  const postLoginUser = async (formData) => {
+    setIsError(false);
     try {
-      const response = await axios.get(`${baseUrl}/questions`);
-      // console.log(response.data);
-      setQuestionData(response.data);
+      const loggedUser = await axios.post(`${baseUrl}/login`, formData);
+      setCookie("user", loggedUser.data.user);
+      router.push("/dashboard");
     } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
-  const postRegisterUser = async (formData) => {
-    try {
-      await axios.post(`${baseUrl}/users`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      router.push("/instructor");
-    } catch (error) {
+      setIsError(true);
       console.error("Error fetching data:", error);
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const formData = new FormData();
-    formData.append("profilePic", e.target.profilePic.files[0]);
-    formData.append("username", e.target.username.value);
-    formData.append("password", e.target.password.value);
-    formData.append("fullName", e.target.fullName.value);
-    formData.append("designation", e.target.designation.value);
-    formData.append("institution", e.target.institution.value);
-    // formData.append("type", e.target.type.value);
-    formData.append("type", "instructor");
-    formData.append("bio", e.target.bio.value);
-    postRegisterUser(formData);
+    const formData = {
+      username: e.target.username.value,
+      password: "123456",
+    };
+    postLoginUser(formData);
   };
 
   return (
@@ -115,7 +38,7 @@ const Home = () => {
         <div className="grid md:grid-cols-12 gap-5 py-5 max-h-full">
           <div className="col-span-12 my-8">
             <div className="max-w-md mx-auto">
-              <div className="font-bold text-xl bg-green-100 border-x-4 border-x-green-700 text-green-700 text-center rounded p-4">
+              <div className="font-bold text-xl bg-green-200 border-t-4 border-t-green-700 text-center rounded p-4">
                 Login
               </div>
               <form
@@ -152,6 +75,13 @@ const Home = () => {
                     required
                   />
                 </div>
+                {isError && (
+                  <div className="col-span-12">
+                    <p className="text-center text-rose-700 text-sm">
+                      Username or password invalid!!
+                    </p>
+                  </div>
+                )}
                 <div className="col-span-12 flex justify-center mt-4">
                   <button
                     type="submit"

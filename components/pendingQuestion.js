@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { baseUrl } from "../utils/config";
+import { getCookie } from "cookies-next";
 
 const PostDetails = () => {
   const [qestionData, setQuestionData] = useState([]);
@@ -10,9 +11,12 @@ const PostDetails = () => {
   }, []);
 
   const getAllQuestionList = async () => {
+    const userCookie = await getCookie("user");
+    const instructorId = userCookie ? JSON.parse(userCookie).id : null;
+
     try {
       const response = await axios.post(`${baseUrl}/questions/instructor`, {
-        instructorId: 1,
+        instructorId,
         mode: 0,
       });
       // console.log(response.data);
@@ -53,26 +57,41 @@ const PostDetails = () => {
             </tr>
           </thead>
           <tbody>
-            {qestionData.map((question, index) => (
-              <tr key={question.id}>
-                <td className="py-2 px-4 border-b text-center ">{index + 1}</td>
-                <td className="py-2 px-4 border-b text-center">
-                  {question.title}
-                </td>
-                <td
-                  className="py-2 px-4 border-b text-center"
-                  dangerouslySetInnerHTML={{ __html: question.description }}
-                ></td>
-                <td className="py-2 px-4 border-b text-center">
-                  <button
-                    className="text-green-500 font-bold hover:underline"
-                    onClick={() => handleDelete(question.id)}
-                  >
-                    Answer
-                  </button>
-                </td>
-              </tr>
-            ))}
+            {qestionData.length > 0 ? (
+              <>
+                {qestionData.map((question, index) => (
+                  <tr key={question.id}>
+                    <td className="py-2 px-4 border-b text-center ">
+                      {index + 1}
+                    </td>
+                    <td className="py-2 px-4 border-b text-center">
+                      {question.title}
+                    </td>
+                    <td
+                      className="py-2 px-4 border-b text-center"
+                      dangerouslySetInnerHTML={{ __html: question.description }}
+                    ></td>
+                    <td className="py-2 px-4 border-b text-center">
+                      <button
+                        className="text-green-500 font-bold hover:underline"
+                        onClick={() => handleDelete(question.id)}
+                      >
+                        Answer
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </>
+            ) : (
+              <>
+                {" "}
+                <tr>
+                  <td colSpan={4} className="text-center py-3 text-gray-600">
+                    No Data Found
+                  </td>
+                </tr>
+              </>
+            )}
           </tbody>
         </table>
       </div>

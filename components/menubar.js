@@ -1,5 +1,7 @@
+import { getCookie } from "cookies-next";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { AiOutlineHome, AiFillDashboard, AiOutlineLogin } from "react-icons/ai";
 import { FaChalkboardTeacher, FaDiscourse } from "react-icons/fa";
 import { RiAdminFill } from "react-icons/ri";
@@ -21,7 +23,12 @@ const MenuItem = ({ item, isActive }) => {
 
 const Menubar = () => {
   const router = useRouter();
-  const isLoggedIn = false;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const userData = JSON.parse(getCookie("user") || null);
+    setIsLoggedIn(userData !== null);
+  }, [getCookie("user")]);
 
   const menuList = [
     {

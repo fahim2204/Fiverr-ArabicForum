@@ -27,16 +27,22 @@ export default async (req, res) => {
 
         // console.log(isTokenExpired(user.token));
         // const token = user.token ? user.token : generateJWT(user);
-        const token = generateJWT(user);
+        // const token = generateJWT(user);
 
         // delete req.body.password;
 
-        const updatedUser = await User.Update(user.id, { token });
+        // const updatedUser = await User.Update(user.id, { token });
+        // console.log(updatedUser)
 
         return res.status(200).json({
           success: true,
           msg: "Login success!!",
-          token: token,
+          user: {
+            id: user.id,
+            username: user.username,
+            fullName: user.fullName,
+            type: user.type,
+          },
         });
       } catch (err) {
         return res.status(400).send(err);
@@ -64,6 +70,4 @@ export default async (req, res) => {
       }
     }
   };
-  
-  
 };
