@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { baseUrl } from "../utils/config";
 import { getCookie } from "cookies-next";
+import Link from "next/link";
 
 const PostDetails = () => {
   const [qestionData, setQuestionData] = useState([]);
@@ -13,7 +14,7 @@ const PostDetails = () => {
   const getAllQuestionList = async () => {
     const userCookie = await getCookie("user");
     const instructorId = userCookie ? JSON.parse(userCookie).id : null;
-    
+
     try {
       const response = await axios.post(`${baseUrl}/questions/instructor`, {
         instructorId,
@@ -23,21 +24,6 @@ const PostDetails = () => {
       setQuestionData(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
-    }
-  };
-
-  const deleteQuestion = async (id) => {
-    try {
-      const response = await axios.delete(`${baseUrl}/questions/${id}`);
-      getAllQuestionList();
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-  const handleDelete = (id) => {
-    const result = window.confirm("Are you sure you want to delete?");
-    if (result) {
-      deleteQuestion(id);
     }
   };
 
@@ -53,7 +39,7 @@ const PostDetails = () => {
               <th className="py-2 px-4 border-b text-center">Sl No.</th>
               <th className="py-2 px-4 border-b text-center">Title</th>
               <th className="py-2 px-4 border-b text-center">Description</th>
-              <th className="py-2 px-4 border-b text-center">Actions</th>
+              <th className="py-2 px-4 border-b text-center">Answer</th>
             </tr>
           </thead>
           <tbody>
@@ -64,27 +50,22 @@ const PostDetails = () => {
                     <td className="py-2 px-4 border-b text-center ">
                       {index + 1}
                     </td>
-                    <td className="py-2 px-4 border-b text-center">
-                      {question.title}
+                    <td className="py-2 px-4 border-b text-center hover:text-green-500">
+                     <Link href={`/question/${question.id}`}> {question.title}</Link>
                     </td>
                     <td
                       className="py-2 px-4 border-b text-center"
                       dangerouslySetInnerHTML={{ __html: question.description }}
                     ></td>
-                    <td className="py-2 px-4 border-b text-center">
-                      <button
-                        className="text-green-500 font-bold hover:underline"
-                        onClick={() => handleDelete(question.id)}
-                      >
-                        Answer
-                      </button>
-                    </td>
+                    <td
+                      className="py-2 px-4 border-b text-center"
+                      dangerouslySetInnerHTML={{ __html: question.answer }}
+                    ></td>
                   </tr>
                 ))}
               </>
             ) : (
               <>
-                {" "}
                 <tr>
                   <td colSpan={4} className="text-center py-3 text-gray-600">
                     No Data Found

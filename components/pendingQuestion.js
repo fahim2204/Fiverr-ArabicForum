@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { baseUrl } from "../utils/config";
 import { getCookie } from "cookies-next";
+import Link from "next/link";
 
 const PostDetails = () => {
   const [qestionData, setQuestionData] = useState([]);
@@ -64,27 +65,28 @@ const PostDetails = () => {
                     <td className="py-2 px-4 border-b text-center ">
                       {index + 1}
                     </td>
-                    <td className="py-2 px-4 border-b text-center">
-                      {question.title}
+                    <td className="py-2 px-4 border-b text-center hover:text-green-500">
+                      <Link href={`/question/${question.id}`}>
+                        {question.title}
+                      </Link>
                     </td>
                     <td
                       className="py-2 px-4 border-b text-center"
                       dangerouslySetInnerHTML={{ __html: question.description }}
                     ></td>
                     <td className="py-2 px-4 border-b text-center">
-                      <button
-                        className="text-green-500 font-bold hover:underline"
-                        onClick={() => handleDelete(question.id)}
+                      <Link
+                        href={`/answer/${question.id}`}
+                        className="bg-green-500 text-white rounded-2xl px-3 py-1 font-bold hover:opacity-80"
                       >
                         Answer
-                      </button>
+                      </Link>
                     </td>
                   </tr>
                 ))}
               </>
             ) : (
               <>
-                {" "}
                 <tr>
                   <td colSpan={4} className="text-center py-3 text-gray-600">
                     No Data Found
